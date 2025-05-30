@@ -26,3 +26,9 @@ reset:
 
 tree:
 	tree --gitignore
+
+builddocker:
+	docker build -t socks .
+
+rundocker: builddocker
+	docker run --rm -p 9000:9000 socks

@@ -4,7 +4,6 @@ public class WebSocketMessage {
     private MessageType type;
     private String content;
 
-    // Getters, setters, constructor
     public MessageType getType() {
         return type;
     }
