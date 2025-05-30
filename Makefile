@@ -9,6 +9,11 @@ setup:
 	mv bin/gradle-8.14 bin/gradlew
 	./bin/gradlew/bin/gradle wrapper --gradle-version 8.14
 
+reset:
+	rm -rf bin build \
+		gradle gradlew gradlew.bat \
+		.gradle build.gradle.lockfile
+
 build:
 	$(GRADLEW) build
 
@@ -21,8 +26,11 @@ run:
 clean:
 	$(GRADLEW) clean
 
-reset:
-	rm -rf bin gradle build gradlew.bat .gradle build.gradle.lockfile
-
 tree:
 	tree --gitignore
+
+builddocker:
+	docker build -t socks .
+
+rundocker: builddocker
+	docker run --rm -p 8000:8000 socks

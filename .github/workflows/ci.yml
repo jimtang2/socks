@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: [self_hosted, lab9-runner-socks]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Change to directory and pull latest code
+        run: |
+          cd /home/ubuntu/nginx/dev/socks
+          git pull
+
+      - name: Build Docker image
+        run: |
+          cd /home/ubuntu/nginx/dev/socks
+          make builddocker
+
+      - name: Restart Docker Compose service
+        run: |
+          cd /home/ubuntu
+          docker compose down socks
+          docker compose up -d socks

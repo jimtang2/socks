@@ -1,0 +1,6 @@
+.gradle
+bin
+gradle
+tmp
+gradlew
+gradlew.bat
