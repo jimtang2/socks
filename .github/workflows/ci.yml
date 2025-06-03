@@ -6,23 +6,28 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: [self_hosted, lab9-runner-socks]
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Change to directory and pull latest code
+      - name: Build builder Docker image
         run: |
-          cd /home/ubuntu/nginx/dev/socks
-          git pull
+          if ! docker image ls -q socks-builder | grep -q .; then
+            cd $GITHUB_WORKSPACE
+            docker build -f docker/builder.dockerfile -t socks-builder docker
+          fi
 
       - name: Build Docker image
         run: |
-          cd /home/ubuntu/nginx/dev/socks
-          make builddocker
+          cd $GITHUB_WORKSPACE && docker build -t socks .          
 
       - name: Restart Docker Compose service
         run: |
           cd /home/ubuntu
-          docker compose down socks
-          docker compose up -d socks
+          docker compose down socks && docker compose up -d socks          
+
+      - name: Copy checked out code to NGINX projects directory
+        run: |
+          rm -rf /home/ubuntu/nginx/dev/socks/*
+          cp -r $GITHUB_WORKSPACE/* /home/ubuntu/nginx/dev/socks/

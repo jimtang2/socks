@@ -1,10 +1,6 @@
-FROM ubuntu:24.04 AS builder
+FROM socks-builder AS builder
 
 WORKDIR /app
-
-RUN apt-get update && apt-get install -y curl unzip make openjdk-21-jdk
-
-ENV PATH="/usr/local/gradle/bin:${PATH}"
 
 COPY . .
 

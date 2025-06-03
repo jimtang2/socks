@@ -29,8 +29,7 @@ clean:
 tree:
 	tree --gitignore
 
-builddocker:
+docker:
+	docker build -t socks-builder -f docker/builder.dockerfile docker
 	docker build -t socks .
-
-rundocker: builddocker
 	docker run --rm -p 8000:8000 socks
