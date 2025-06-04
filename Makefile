@@ -18,7 +18,7 @@ build:
 	$(GRADLEW) build
 
 test:
-	$(GRADLEW) test
+	$(GRADLEW) test --warning-mode all
 
 run:
 	$(GRADLEW) bootRun
