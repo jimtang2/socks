@@ -13,8 +13,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.5.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.0'
     implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+    
     runtimeOnly 'org.postgresql:postgresql:42.7.3'
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.0'
+    
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.0'
 }
 
@@ -36,5 +39,14 @@ base {
 
 tasks.named('test') {
     useJUnitPlatform()
-    ignoreFailures = true
+    // ignoreFailures = true
+
+    jvmArgs "-javaagent:${configurations.testRuntimeClasspath.find { it.name.contains('mockito-core') }}", '-Xshare:off'
+    
+    systemProperty 'java.util.logging.ConsoleHandler.level', 'FINE'
+    testLogging {
+        // events 'passed', 'skipped', 'failed'
+        exceptionFormat = 'full'
+        showStandardStreams = true
+    }
 }

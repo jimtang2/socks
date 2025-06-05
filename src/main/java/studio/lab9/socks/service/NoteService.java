@@ -9,18 +9,13 @@ import java.util.List;
 
 @Service
 public class NoteService {
-    private final JdbcTemplate jdbcTemplate;
-
-    public NoteService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     static class Note {
-        private Long id;
-        private String title;
-        private String content;
-        private LocalDateTime updatedAt;
-        private LocalDateTime createdAt;
+        public Long id;
+        public String title;
+        public String content;
+        public LocalDateTime updatedAt;
+        public LocalDateTime createdAt;
 
         public Note(Long id, String title, String content, LocalDateTime updatedAt, LocalDateTime createdAt) {
             this.id = id;
@@ -31,6 +26,12 @@ public class NoteService {
         }
     }
 
+    private final JdbcTemplate jdbcTemplate;
+
+    public NoteService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     private final RowMapper<Note> noteMapper = (rs, rowNum) -> new Note(
         rs.getLong("id"),
         rs.getString("title"),
@@ -39,13 +40,11 @@ public class NoteService {
         rs.getTimestamp("created_at").toLocalDateTime()
     );
 
-    // Read all notes
     public List<Note> getAllNotes() {
         String sql = "SELECT id, title, content, updated_at, created_at FROM notes";
         return jdbcTemplate.query(sql, noteMapper);
     }
 
-    // Read note by ID
     public Note getNoteById(Long id) {
         String sql = "SELECT id, title, content, updated_at, created_at FROM notes WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, noteMapper, id);

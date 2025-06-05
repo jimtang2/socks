@@ -1,7 +1,5 @@
 server:
   port: 8000
 spring:
-  datasource:
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
-    username: ${PGUSER}
-    password: ${PGPASSWORD}
+  main:
+    banner-mode: "off"
