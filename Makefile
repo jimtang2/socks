@@ -15,7 +15,7 @@ reset:
 		.gradle build.gradle.lockfile
 
 build:
-	$(GRADLEW) build
+	$(GRADLEW) build -x test
 
 test:
 	$(GRADLEW) test --warning-mode all
