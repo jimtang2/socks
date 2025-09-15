@@ -9,9 +9,11 @@ repositories {
 }
 
 dependencies {
+    developmentOnly 'org.springframework.boot:spring-boot-devtools:3.5.0'
     implementation 'org.springframework.boot:spring-boot-starter-websocket:3.5.0'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.5.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
     implementation 'io.github.cdimascio:java-dotenv:5.2.2'
     
     runtimeOnly 'org.postgresql:postgresql:42.7.3'

@@ -16,5 +16,5 @@
     <!-- Suppress verbose Spring logs -->
     <logger name="org.springframework" level="ERROR"/>
     <logger name="org.springframework.boot" level="ERROR"/>
-    <logger name="studio.lab9.socks" level="ERROR"/>
+    <logger name="studio.lab9.socks" level="INFO"/>
 </configuration>

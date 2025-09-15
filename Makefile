@@ -23,6 +23,9 @@ test:
 run:
 	$(GRADLEW) bootRun
 
+dev:
+	$(GRADLEW) bootRun --continuous
+
 clean:
 	$(GRADLEW) clean
 
