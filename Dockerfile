@@ -1,6 +1,6 @@
 FROM socks-builder AS builder
 
-RUN apt-get update && apt-get install -y libudev-dev
+RUN apk update && apk add --no-cache libudev
 
 WORKDIR /app
 
