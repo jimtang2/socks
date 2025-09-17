@@ -47,7 +47,7 @@ public class MarketWebSocketHandler extends TextWebSocketHandler {
         logger.info("WebSocket connection closed: {}. Current sessions: {}", session.getId(), sessions.size());
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 200)
     public void broadcastMarketData() {
         for (WebSocketSession session : sessions) {
             if (session.isOpen()) {
