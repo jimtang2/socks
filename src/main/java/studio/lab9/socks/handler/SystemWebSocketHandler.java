@@ -18,7 +18,7 @@ import java.lang.management.ManagementFactory;
 
 @Component
 @SuppressWarnings("deprecation") // Suppress warnings for OperatingSystemMXBean
-public class SystemWebSocketHandler extends AbstractWebSocketHandler {
+public class SystemWebSocketHandler extends TimeoutWebSocketHandler {
     private final MarketWebSocketHandler marketWebSocketHandler;
     private final OperatingSystemMXBean osBean;
     private final SystemInfo systemInfo;
@@ -87,7 +87,7 @@ public class SystemWebSocketHandler extends AbstractWebSocketHandler {
                 );
                 String json = objectMapper.writeValueAsString(message);
                 session.sendMessage(new TextMessage(json));
-                logger.debug("Broadcast sent to session: {}", session.getId());
+                // logger.debug("Broadcast sent to session: {}", session.getId());
             } catch (IOException e) {
                 logger.error("Error sending system message to session {}: {}", session.getId(), e.getMessage());
                 try {

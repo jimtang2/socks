@@ -14,7 +14,7 @@ import java.util.Random;
 import java.util.UUID;
 
 @Component
-public class MarketWebSocketHandler extends AbstractWebSocketHandler {
+public class MarketWebSocketHandler extends TimeoutWebSocketHandler {
     private final Random random = new Random();
     private final String[] symbols = {"AAPL", "GOOGL", "MSFT", "AMZN"};
 
@@ -44,7 +44,7 @@ public class MarketWebSocketHandler extends AbstractWebSocketHandler {
                 String json = objectMapper.writeValueAsString(message);
                 String prefixedMessage = String.format("~m~%d~m~%s", json.length(), json);
                 session.sendMessage(new TextMessage(prefixedMessage));
-                logger.debug("Broadcast sent to session: {}", session.getId());
+                // logger.debug("Broadcast sent to session: {}", session.getId());
             } catch (IOException e) {
                 logger.error("Error sending market data to session {}: {}", session.getId(), e.getMessage());
                 try {

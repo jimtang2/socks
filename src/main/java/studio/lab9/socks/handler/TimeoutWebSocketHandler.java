@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public abstract class AbstractWebSocketHandler extends TextWebSocketHandler {
+public abstract class TimeoutWebSocketHandler extends TextWebSocketHandler {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
     protected final List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
     protected final Map<WebSocketSession, Long> sessionTimestamps = new ConcurrentHashMap<>();
@@ -24,7 +24,7 @@ public abstract class AbstractWebSocketHandler extends TextWebSocketHandler {
     protected static final long IDLE_TIMEOUT = 3_000L; // 3 seconds
     protected static final long CHECK_INTERVAL = 2_000L; // Check every 2 seconds
 
-    public AbstractWebSocketHandler() {
+    public TimeoutWebSocketHandler() {
         this.objectMapper = new ObjectMapper()
                 .registerModule(new JavaTimeModule())
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);

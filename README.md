@@ -19,9 +19,11 @@ The purpose of this project is to build a microservice to:
 - DatabaseConfig: [https://dev.lab9.studio/socks/src/main/java/studio/lab9/socks/config/DatabaseConfig.java](https://dev.lab9.studio/socks/src/main/java/studio/lab9/socks/config/DatabaseConfig.java)
 - WebSocketConfig: [https://dev.lab9.studio/socks/src/main/java/studio/lab9/socks/config/WebSocketConfig.java](https://dev.lab9.studio/socks/src/main/java/studio/lab9/socks/config/WebSocketConfig.java)
 
+### Websocket Handlers
+- Path: [https://dev.lab9.studio/socks/src/main/java/studio/lab9/socks/handler](https://dev.lab9.studio/socks/src/main/java/studio/lab9/socks/handler)
+
 ### Test
 - Application Tests: [https://dev.lab9.studio/socks/src/test/java/studio/lab9/socks](https://dev.lab9.studio/socks/src/test/java/studio/lab9/socks)
-- NoteServiceTest: [https://dev.lab9.studio/socks/src/test/java/studio/lab9/socks/service/NoteServiceTest.java](https://dev.lab9.studio/socks/src/test/java/studio/lab9/socks/service/NoteServiceTest.java)
 
 ### Deploy
 - Dockerfile CI: [https://dev.lab9.studio/socks/Dockerfile](https://dev.lab9.studio/socks/Dockerfile)
@@ -30,4 +32,3 @@ The purpose of this project is to build a microservice to:
 
 ## TODO
 
-- Update `NoteServiceTest.java` so that we load `DatabaseConfig.java` and `NoteService.java` to run tests.
